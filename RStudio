@@ -1,0 +1,79 @@
+---
+title: "latest covid 19 and SIR model"
+author: "Jackie Kiener"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+The code below will pull up the covid19.analytics package after installation. The purpose of this notebook is to get the latest update on covid19 cases around the globe. You can check the number of confirmed cases, death, top 10 countries that has the highest covid infection rate and more. 
+
+```{r}
+library(covid19.analytics)
+
+```
+
+
+```{r Dataframe ag}
+ag <- covid19.data(case = 'aggregated')
+```
+
+
+```{r Confirmed cases dataframe tsc}
+tsc <- covid19.data(case = 'ts-confirmed')
+```
+```{r All info dataframe tsa}
+tsa <- covid19.data(case = 'ts-ALL')
+```
+Let's look at a summary report of the top 10 countries with highest confirmed cases. 
+
+```{r}
+report.summary(Nentries = 10 , graphical.output = F)
+
+```
+When we change the graphical output to 'T' it will show us a graph of summary output.
+
+```{r}
+report.summary(Nentries = 10 , graphical.output = T)
+```
+If you come across this error message "Error in plot.new() : figure margins too large"
+Run the code chunk below and it should solve the problem.
+
+```{r}
+par("mar")
+par(mar=c(1, 1, 1, 1))
+```
+
+To get the total per location, run the code below.
+```{r}
+tots.per.location(tsc, geo.loc = 'Peru')
+```
+
+
+Let's check the growth rate per country.
+```{r}
+growth.rate(tsc, geo.loc = 'US')
+```
+
+Let's look at the total plot globally.
+```{r}
+totals.plt(tsa) 
+```
+Total plots per country 
+```{r}
+totals.plt(tsa, c('US'))
+```
+
+Interactive world map.  
+```{r}
+live.map(tsa)
+```
+
+SIR model (Susceptible, Infected, Recovered)
+```{r}
+generate.SIR.model(tsc, 'US', tot.population = 329500000)
+```
+
