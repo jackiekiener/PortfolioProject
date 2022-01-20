@@ -7,6 +7,8 @@ output:
     df_print: paged
 ---
 
+/* working with built in covid19.analytics package in RStudio */
+
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
 
 The code below will pull up the covid19.analytics package after installation. The purpose of this notebook is to get the latest update on covid19 cases around the globe. You can check the number of confirmed cases, death, top 10 countries that has the highest covid infection rate and more. 
